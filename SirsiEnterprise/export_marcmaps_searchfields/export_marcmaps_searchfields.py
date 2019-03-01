@@ -31,13 +31,11 @@ def make_soup(page_name, slug):
         'managemarcmaps.edit': '{}managemarcmaps.edit/{}',
         'managemarcmaps.confmarc21tags': '{}managemarcmaps.confmarc21tags/{}/false',
     }
-    print(slug)
     if isinstance(slug, str):
         slug = slug.replace('/', '$002f').replace(' ', '$0020')
     full_url = urls[page_name].format(base_url, slug)
     print(full_url)
     page = requests_retry_session(session=s).get(full_url)
-    print(page)
     return soup(page.content, 'lxml')
 
 
@@ -299,7 +297,7 @@ if __name__ == '__main__':
 
     login()
 
-    # print('scraping your searchfields')
-    # do_searchfields()
+    print('scraping your searchfields')
+    do_searchfields()
     print('scraping your marcmaps')
     do_marcmaps()
