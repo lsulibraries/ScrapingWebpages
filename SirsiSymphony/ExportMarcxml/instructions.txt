@@ -1,0 +1,7 @@
+Workflows/Report/Templates/"Extract Keys for Marc Export"" with whatever options you specify and "in the shadow catalog"=="No".
+
+Workflows/Utility/ExportMarc.  
+
+Parsing the single marc file into individual marcxml files, using ConvertMarcToMARCXML.  
+
+Grouping the flat directory of marcxml files into sub-directories, using GroupMarcXMLIntoClumps. 
