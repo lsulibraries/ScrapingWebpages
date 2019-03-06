@@ -97,7 +97,7 @@ def do_searchfields():
     searchfields_dict = add_searchfield_editfield_dict(searchfields_dict)
     searchfields_dict = add_searchfield_configuremarcmap_dict(searchfields_dict)
     with open('Enterprise_searchfields.json', 'w') as f:
-        f.write(json.dumps(searchfields_dict))
+        f.write(json.dumps(searchfields_dict, indent=2, sort_keys=True))
 
 
 def build_basic_search_dict():
@@ -165,7 +165,7 @@ def do_marcmaps():
         i: get_marc_info(i) for i in all_marc_codes
     }
     with open('Enterprise_marc_fields.json', 'w') as f:
-        f.write(json.dumps(all_marc_details_dict))
+        f.write(json.dumps(all_marc_details_dict, indent=2, sort_keys=True))
 
 
 def get_all_marc_codes():
@@ -176,8 +176,6 @@ def get_all_marc_codes():
         marc_item_rows = marc_results_page_soup.select('#marcMapTable tbody tr')
         for marc_item_row in marc_item_rows:
             marc_code = marc_item_row.select('td')[0].string
-            if not marc_code.startswith('UNM'):
-                continue
             marc_codes.add(marc_code)
     return list(sorted(marc_codes))
 
