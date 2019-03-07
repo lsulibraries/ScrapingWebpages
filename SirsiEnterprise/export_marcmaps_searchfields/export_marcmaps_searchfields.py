@@ -4,6 +4,7 @@ import json
 import getpass
 import logging
 import http.client as http_client
+import argparse
 
 import requests
 from requests.adapters import HTTPAdapter
@@ -260,8 +261,8 @@ def login():
 
 
 def requests_retry_session(
-    retries=3,
-    backoff_factor=0.3,
+    retries=10,
+    backoff_factor=0.6,
     status_forcelist=(500, 502, 504),
     session=None,
 ):
@@ -289,12 +290,15 @@ def do_verbose_logging():
 
 
 if __name__ == '__main__':
-    # do_verbose_logging()
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument('--verbose', action='store_true', help='verbose logging')
+    args = argparser.parse_args()
+
+    if args.verbose:
+        do_verbose_logging()
 
     s = requests.Session()
-
     login()
-
     print('scraping your searchfields')
     do_searchfields()
     print('scraping your marcmaps')
